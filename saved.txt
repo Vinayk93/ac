@@ -1,0 +1,1 @@
+{"status":"true","data":"OK","duration":13000,"temp":16}
