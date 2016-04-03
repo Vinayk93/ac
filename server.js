@@ -30,11 +30,30 @@ app.get('/api/data',function(req,res){
 app.post('/api/send',function (req,res) {
   var duration=3000;
     var temp=23;
-    
-  var k=req.body;
+   // console.log(req.body.entities.hello[0]);
+    var a=req.body;
+    console.log(a);
+    var k={
+            "msg_id": "deb1317c-e67b-417b-a407-08d38175fef0",
+            "_text": "send to set ac to thirty minutes",
+            "outcomes":[a]
+          }; 
+          console.log(k.outcomes[0].entities.how_are_you_);
+  //var k=req.body;
 	var result=new Array();
 var count=0;
+console.log(k);
 	if(k.outcomes[0].intent=='greetings'){ 
+    if(k.outcomes[0].entities.hello){
+    for(var a=0;a<k.outcomes[0].entities.hello.length;a++){
+      if(k.outcomes[0].entities.hello[a].value){
+        //console.log(k.outcomes[0].entities.how_are_you_[a].value);
+          result[count]=k.outcomes[0].entities.hello.value;
+          ++count;
+      }
+    }
+  }
+    if(k.outcomes[0].entities.how_are_you_){
 		for(var a=0;a<k.outcomes[0].entities.how_are_you_.length;a++){
 			if(k.outcomes[0].entities.how_are_you_[a].value){
 				//console.log(k.outcomes[0].entities.how_are_you_[a].value);
@@ -42,6 +61,8 @@ var count=0;
           ++count;
 			}
 		}
+  }
+  if(k.outcomes[0].entities.I_am_fine){
 		for(var b=0;b<k.outcomes[0].entities.I_am_fine.length;b++){
 			if(k.outcomes[0].entities.I_am_fine[b].value){
 				//console.log(k.outcomes[0].entities.I_am_fine[b].value);
@@ -49,11 +70,12 @@ var count=0;
         result[count]=k.outcomes[0].entities.I_am_fine[b].value;
 			}
 		}
+  } 
 			var temp=999;
 			var duration=999;
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
-	res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}'));
-
+	
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}'));
 	}	
 	else if (k.outcomes[0].intent=='ac'){
 		
@@ -74,9 +96,12 @@ var count=0;
 		}
 	}
   //save it on cookie
-  
-    var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
-var k1=JSON.stringify(a);
+  if(temp==null){
+    var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}');
+    }
+    else{var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}');
+    }
+    var k1=JSON.stringify(a);
   console.log(a);
    fs.writeFile('saved.txt', k1, function(err) {
                     if (err) throw err;
@@ -98,7 +123,6 @@ console.log('Magic happens on port ' + port);
   var ra=JSON.stringify(
 /*
     {
-
   "msg_id": "deb1317c-e67b-417b-a407-08d38175fef0",
   "_text": "send to set ac to thirty minutes",
   "outcomes": [
@@ -121,6 +145,7 @@ console.log('Magic happens on port ' + port);
     }
   ]
 }
+
 /*
 {
   "msg_id": "1bc39061-d3a5-4fbe-91c0-e8cf2c8b6f53",
