@@ -30,14 +30,42 @@ app.get('/api/data',function(req,res){
 app.post('/api/send',function (req,res) {
   var duration=3000;
     var temp=23;
-   // console.log(req.body.entities.hello[0]);
-    var a=req.body;
+  var a=req.body;
     console.log(a);
+   
     var k={
             "msg_id": "deb1317c-e67b-417b-a407-08d38175fef0",
             "_text": "send to set ac to thirty minutes",
             "outcomes":[a]
           }; 
+     
+          //commend it now
+          /*
+          var k= {
+  "msg_id": "1bc39061-d3a5-4fbe-91c0-e8cf2c8b6f53",
+  "_text": "is that runs how are you",
+  "outcomes": [
+    {
+      "_text": "is that runs how are you",
+      "confidence": 0.689,
+      "intent": "greetings",
+      "entities": {
+        "how_are_you_": [
+          {
+            "value": "how are you"
+          }
+        ],
+        "I_am_fine": [
+          {
+            "value": "i am fine"
+          }
+        ]
+      }
+    }
+  ]
+};
+*/
+      //comment take off
           console.log(k.outcomes[0].entities.how_are_you_);
   //var k=req.body;
 	var result=new Array();
@@ -76,9 +104,11 @@ console.log(k);
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
 	
   res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}'));
-	}	
+  var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}');
+	}
+
 	else if (k.outcomes[0].intent=='ac'){
-		
+    console.log("take value of ac");
 		if(k.outcomes[0].entities.duration){
 		for(var a=0;a<k.outcomes[0].entities.duration.length;a++){
 			if(k.outcomes[0].entities.duration[a].value){
@@ -91,25 +121,37 @@ console.log(k);
 		for(var a=0;a<k.outcomes[0].entities.temperature.length;a++){
 			if(k.outcomes[0].entities.temperature[a].value){
 				temp=k.outcomes[0].entities.temperature[a].value;
-				result[0]="OK";
+				result[0]="Ac is set to "+temp+" second";
 			}
 		}
 	}
+}
   //save it on cookie
   if(temp==null){
-    var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}');
+    var a='{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}';
+    res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}'));
     }
-    else{var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}');
+    else{
+    //console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}');
+
+    var a='{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}';
+    res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}'));
+ 
+    //var s=new Buffer(ss);
+    //console.log(ss);
+    //var p=ss;
     }
-    var k1=JSON.stringify(a);
+  
+//res.send(a);
+  
+  var k1=a;
   console.log(a);
    fs.writeFile('saved.txt', k1, function(err) {
                     if (err) throw err;
                     console.log('file saved');
                     });
 
-  res.send(a);
-  }
+  
 //for setup for ac command 
 
 })

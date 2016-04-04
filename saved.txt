@@ -1,1 +1,1 @@
-{"status":"true","data":"OK","duration":13000,"temp":16}
+{"status":"true","data":"how are you,,i am fine","duration":999,"temp":999,"ac_status","on"}
