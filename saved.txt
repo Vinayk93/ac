@@ -1,1 +1,1 @@
-{"status":"true","data":"hey","duration":999,"temp":999,"ac_status":"off"}
+"{\"status\":\"true\",\"data\":\"Air Conditioner is set to 0 C Celsius\",\"duration\":3000,\"temp\":0 C,\"ac_status\":\"off\"}"
