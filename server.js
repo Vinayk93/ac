@@ -30,9 +30,9 @@ app.get('/api/data',function(req,res){
 app.post('/api/send',function (req,res) {
   var duration=3000;
     var temp=23;
-  var a=req.body;
-    console.log(a);
-   
+  //var a=req.body;
+   // console.log(a);
+  /* 
     var k={
             "msg_id": "deb1317c-e67b-417b-a407-08d38175fef0",
             "_text": "send to set ac to thirty minutes",
@@ -40,31 +40,26 @@ app.post('/api/send',function (req,res) {
           }; 
      
           //commend it now
-          /*
+          */
           var k= {
-  "msg_id": "1bc39061-d3a5-4fbe-91c0-e8cf2c8b6f53",
-  "_text": "is that runs how are you",
+  "msg_id": "d567989c-1da5-46b2-95c5-43b83d61cd86",
+  "_text": "hi",
   "outcomes": [
     {
-      "_text": "is that runs how are you",
-      "confidence": 0.689,
+      "_text": "hi",
+      "confidence": 0.546,
       "intent": "greetings",
       "entities": {
-        "how_are_you_": [
+        "hello": [
           {
-            "value": "how are you"
-          }
-        ],
-        "I_am_fine": [
-          {
-            "value": "i am fine"
+            "value": "hey"
           }
         ]
       }
     }
   ]
 };
-*/
+
       //comment take off
           console.log(k.outcomes[0].entities.how_are_you_);
   //var k=req.body;
@@ -76,7 +71,7 @@ console.log(k);
     for(var a=0;a<k.outcomes[0].entities.hello.length;a++){
       if(k.outcomes[0].entities.hello[a].value){
         //console.log(k.outcomes[0].entities.how_are_you_[a].value);
-          result[count]=k.outcomes[0].entities.hello.value;
+          result[count]=k.outcomes[0].entities.hello[a].value;
           ++count;
       }
     }
@@ -106,7 +101,6 @@ console.log(k);
   res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}'));
   var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}');
 	}
-
 	else if (k.outcomes[0].intent=='ac'){
     console.log("take value of ac");
 		if(k.outcomes[0].entities.duration){
@@ -125,27 +119,28 @@ console.log(k);
 			}
 		}
 	}
-}
+
   //save it on cookie
   if(temp==null){
-    var a='{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}';
-    res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}'));
+    var a='{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"on"}';
+    res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"on"}'));
     }
     else{
     //console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}');
 
-    var a='{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}';
-    res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status","on"}'));
+    var a='{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"on"}';
+    res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"on"}'));
  
     //var s=new Buffer(ss);
     //console.log(ss);
     //var p=ss;
     }
-  
+  }
 //res.send(a);
   
-  var k1=a;
+  var k1=JSON.stringify(a);
   console.log(a);
+  console.log(k1);
    fs.writeFile('saved.txt', k1, function(err) {
                     if (err) throw err;
                     console.log('file saved');
