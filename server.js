@@ -43,6 +43,18 @@ app.post('/api/send',function (req,res) {
 	var result=new Array();
 var count=0;
 console.log(k);
+if(k.outcomes[0].intent=='me'){ 
+    if(k.outcomes[0].entities.me){
+    for(var a=0;a<k.outcomes[0].entities.me.length;a++){
+      if(k.outcomes[0].entities.me[a].value){
+          result[count]=k.outcomes[0].entities.me[a].value;
+          ++count;
+      }
+    }
+  }
+  
+}
+
 	if(k.outcomes[0].intent=='greetings'){ 
     if(k.outcomes[0].entities.hello){
     for(var a=0;a<k.outcomes[0].entities.hello.length;a++){
