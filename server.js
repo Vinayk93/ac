@@ -43,7 +43,7 @@ app.post('/api/send',function (req,res) {
 	var result=new Array();
 var count=0;
 console.log(k);
-if(k.outcomes[0].intent=='me'){ 
+if(k.outcomes[0].intent=='about'){ 
     if(k.outcomes[0].entities.me){
     for(var a=0;a<k.outcomes[0].entities.me.length;a++){
       if(k.outcomes[0].entities.me[a].value){
@@ -52,6 +52,12 @@ if(k.outcomes[0].intent=='me'){
       }
     }
   }
+var temp=999;
+			var duration=999;
+	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
+	
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}'));
+  var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}');
   
 }
 

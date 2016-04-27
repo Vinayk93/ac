@@ -1,1 +1,1 @@
-{"status":"true","data":"Air Conditioner switch off","duration":999,"temp":null,"ac_status":"off"}
+{"intent":"UNKNOWN","entities":{},"confidence":0.568,"_text":"no fan"}
