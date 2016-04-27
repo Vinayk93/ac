@@ -1,1 +1,1 @@
-{"intent":"UNKNOWN","entities":{},"confidence":0.568,"_text":"no fan"}
+{"status":"true","data":"Air Conditioner is switched ON","temp":17,"ac_status":"on","flag":"1"}

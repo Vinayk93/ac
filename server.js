@@ -38,8 +38,32 @@ app.post('/api/send',function (req,res) {
             "_text": "send to set ac to thirty minutes",
             "outcomes":[a]
           }; 
-         
+    
+    //
+    /*
+    var k={
+  "msg_id": "3b722873-8e00-44c7-8282-fabb5780e6ae",
+  "_text": "start ac",
+  "outcomes": [
+    {
+      "_text": "start ac",
+      "confidence": 0.994,
+      "intent": "ac",
+      "entities": {
+        "default": [
+          {
+            "value": "17"
+          }
+        ]
+      }
+    }
+  ]
+};    
+*/ 
+    
+    var flag=0;
 
+    //
 	var result=new Array();
 var count=0;
 console.log(k);
@@ -56,8 +80,8 @@ var temp=999;
 			var duration=999;
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
 	
-  res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}'));
-  var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}');
+  res.send(JSON.parse('{"status":"true","data":"'+result+',"temp":'+temp+',"ac_status":"off"}'));
+  var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off"}');
   
 }
 
@@ -93,14 +117,15 @@ var temp=999;
 			var duration=999;
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
 	
-  res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}'));
-  var a=JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}');
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off"}'));
+  var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off"}');
 	}
 
 	else if (k.outcomes[0].intent=='ac'){
     var temp=999;
     var duration=999;
     console.log("take value of ac");
+    /*
 		if(k.outcomes[0].entities.duration){
 		for(var a=0;a<k.outcomes[0].entities.duration.length;a++){
 			if(k.outcomes[0].entities.duration[a].value){
@@ -109,6 +134,7 @@ var temp=999;
 			}
 		}
 	}
+  */
 		if(k.outcomes[0].entities.temperature){
     for(var a=0;a<k.outcomes[0].entities.temperature.length;a++){
       if(k.outcomes[0].entities.temperature[a].value){
@@ -124,7 +150,8 @@ var temp=999;
     for(var a=0;a<k.outcomes[0].entities.default.length;a++){
       if(k.outcomes[0].entities.default[a].value){
         temp=k.outcomes[0].entities.default[a].value;
-        result[0]="Air Conditioner is set to "+temp+" Celsius";
+        result[0]="Air Conditioner is switched ON";
+        flag=1;
       }
     }
   }
@@ -132,13 +159,13 @@ var temp=999;
   console.log(temp.toString()=== 'null');
   if(temp.toString()!== 'null'){
     console.log("define ac");
-  var a=(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"on"}'));
-  res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"on"}'));
+  var a=(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"on","flag":"'+flag+'"}'));
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"on","flag":"'+flag+'"}'));
   }else{
     console.log("stop ac");
     result[0]="Air Conditioner switch off";
-var a=(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}'));
-  res.send(JSON.parse('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+',"ac_status":"off"}'));
+var a=(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":"'+flag+'"}'));
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":"'+flag+'"}'));
   }
     }
   
