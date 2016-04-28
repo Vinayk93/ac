@@ -40,26 +40,50 @@ app.post('/api/send',function (req,res) {
           }; 
     
     //
+    
+    
     /*
     var k={
-  "msg_id": "3b722873-8e00-44c7-8282-fabb5780e6ae",
-  "_text": "start ac",
+  "msg_id": "ca2357cf-efbb-44a0-9517-a3001ee06700",
+  "_text": "set temperature to thirty",
   "outcomes": [
     {
-      "_text": "start ac",
-      "confidence": 0.994,
+      "_text": "set temperature to thirty",
+      "confidence": 0.986,
       "intent": "ac",
       "entities": {
-        "default": [
+        "temperature": [
           {
-            "value": "17"
+            "type": "value",
+            "value": 30
+          }
+        ]
+      }
+    }
+  ]
+};
+
+    
+    var k={
+  "msg_id": "39f06574-f375-4aa7-b40d-95e6f80d4827",
+  "_text": "hello",
+  "outcomes": [
+    {
+      "_text": "hello",
+      "confidence": 0.968,
+      "intent": "greetings",
+      "entities": {
+        "hello": [
+          {
+            "type": "value",
+            "value": "hello"
           }
         ]
       }
     }
   ]
 };    
-*/ 
+*/
     
     var flag=0;
 
@@ -76,8 +100,7 @@ if(k.outcomes[0].intent=='about'){
       }
     }
   }
-var temp=999;
-			var duration=999;
+
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
 	
   res.send(JSON.parse('{"status":"true","data":"'+result+',"temp":'+temp+',"ac_status":"off"}'));
@@ -113,17 +136,22 @@ var temp=999;
       }
 		}
   } 
-			var temp=999;
-			var duration=999;
+  
+  var temp=17;
+  var flag=0;
+  var ac_status="on";
+  //var k;
+//read the prevoius value
+    console.log('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"greetings"}');
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"greetings"}'));
+     var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"greetings"}');
+
+
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
-	
-  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off"}'));
-  var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off"}');
-	}
+ }
 
 	else if (k.outcomes[0].intent=='ac'){
-    var temp=999;
-    var duration=999;
+   
     console.log("take value of ac");
     /*
 		if(k.outcomes[0].entities.duration){
@@ -163,13 +191,11 @@ var temp=999;
   res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"on","flag":"'+flag+'"}'));
   }else{
     console.log("stop ac");
-    result[0]="Air Conditioner switch off";
+    result[0]="Air Conditioner switched OFF";
 var a=(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":"'+flag+'"}'));
   res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":"'+flag+'"}'));
   }
     }
-  
-  
 //res.send(a);
   var k1=JSON.stringify(a);
   console.log(a);
@@ -178,16 +204,7 @@ var a=(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_stat
                     if (err) throw err;
                     console.log('file saved');
                     });
-
-  
 //for setup for ac command 
-
 })
-
-
 app.listen(port);
 console.log('Magic happens on port ' + port);
-
-/*
-
-*/
