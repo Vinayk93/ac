@@ -103,8 +103,8 @@ if(k.outcomes[0].intent=='about'){
 
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
 	
-  res.send(JSON.parse('{"status":"true","data":"'+result+',"temp":'+temp+',"ac_status":"off"}'));
-  var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off"}');
+  res.send(JSON.parse('{"status":"true","data":"'+result+',"temp":'+temp+',"ac_status":"off","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}'));
+  var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}');
   
 }
 
@@ -142,9 +142,9 @@ if(k.outcomes[0].intent=='about'){
   var ac_status="on";
   //var k;
 //read the prevoius value
-    console.log('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"greetings"}');
-  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"greetings"}'));
-     var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"greetings"}');
+    console.log('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}');
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}'));
+     var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"'+ac_status+'","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}');
 
 
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
@@ -187,13 +187,13 @@ if(k.outcomes[0].intent=='about'){
   console.log(temp.toString()=== 'null');
   if(temp.toString()!== 'null'){
     console.log("define ac");
-  var a=(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"on","flag":"'+flag+'"}'));
-  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"on","flag":"'+flag+'"}'));
+  var a=(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"on","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}'));
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"on","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}'));
   }else{
     console.log("stop ac");
     result[0]="Air Conditioner switched OFF";
-var a=(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":"'+flag+'"}'));
-  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":"'+flag+'"}'));
+var a=(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}'));
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}'));
   }
     }
 //res.send(a);
