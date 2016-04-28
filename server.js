@@ -32,7 +32,7 @@ app.post('/api/send',function (req,res) {
  
    var a=req.body;
    console.log(a);
-  
+  /*
     var k={
             "msg_id": "deb1317c-e67b-417b-a407-08d38175fef0",
             "_text": "send to set ac to thirty minutes",
@@ -40,22 +40,21 @@ app.post('/api/send',function (req,res) {
           }; 
     
     //
+    */
     
     
-    /*
     var k={
-  "msg_id": "ca2357cf-efbb-44a0-9517-a3001ee06700",
-  "_text": "set temperature to thirty",
+  "msg_id": "65f3c3f6-ad4c-4491-9ca7-1442ca147395",
+  "_text": "start ac",
   "outcomes": [
     {
-      "_text": "set temperature to thirty",
-      "confidence": 0.986,
+      "_text": "start ac",
+      "confidence": 0.994,
       "intent": "ac",
       "entities": {
-        "temperature": [
+        "default": [
           {
-            "type": "value",
-            "value": 30
+            "value": "17"
           }
         ]
       }
@@ -63,7 +62,7 @@ app.post('/api/send',function (req,res) {
   ]
 };
 
-    
+    /*
     var k={
   "msg_id": "39f06574-f375-4aa7-b40d-95e6f80d4827",
   "_text": "hello",
@@ -83,8 +82,8 @@ app.post('/api/send',function (req,res) {
     }
   ]
 };    
-*/
-    
+
+    */
     var flag=0;
 
     //
