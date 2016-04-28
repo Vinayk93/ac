@@ -44,17 +44,17 @@ app.post('/api/send',function (req,res) {
     
     
     var k={
-  "msg_id": "65f3c3f6-ad4c-4491-9ca7-1442ca147395",
-  "_text": "start ac",
+  "msg_id": "e1b00bfe-7929-4658-90bc-45ac1e327178",
+  "_text": "who are you",
   "outcomes": [
     {
-      "_text": "start ac",
-      "confidence": 0.994,
-      "intent": "ac",
+      "_text": "who are you",
+      "confidence": 0.889,
+      "intent": "about",
       "entities": {
-        "default": [
+        "me": [
           {
-            "value": "17"
+            "value": "I am gabby and I talk too much."
           }
         ]
       }
@@ -101,8 +101,8 @@ if(k.outcomes[0].intent=='about'){
   }
 
 	//console.log('{"status":"true","data":"'+result+'","duration":'+duration+',"temp":'+temp+'}');
-	
-  res.send(JSON.parse('{"status":"true","data":"'+result+',"temp":'+temp+',"ac_status":"off","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}'));
+	console.log('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}');
+  res.send(JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}'));
   var a=JSON.parse('{"status":"true","data":"'+result+'","temp":'+temp+',"ac_status":"off","flag":'+flag+',"intent":"'+k.outcomes[0].intent+'"}');
   
 }
