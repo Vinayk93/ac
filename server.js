@@ -32,7 +32,7 @@ app.post('/api/send',function (req,res) {
  
    var a=req.body;
    console.log(a);
-  /*
+  
     var k={
             "msg_id": "deb1317c-e67b-417b-a407-08d38175fef0",
             "_text": "send to set ac to thirty minutes",
@@ -40,9 +40,8 @@ app.post('/api/send',function (req,res) {
           }; 
     
     //
-    */
     
-    
+    /*
     var k={
   "msg_id": "e1b00bfe-7929-4658-90bc-45ac1e327178",
   "_text": "who are you",
